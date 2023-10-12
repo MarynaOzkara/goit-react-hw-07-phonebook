@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/phonebook-api';
+import Loader from './Loader/Loader';
 
 const App = () => {
   const contacts = useSelector(selectContacts);
@@ -22,12 +23,13 @@ const App = () => {
       <Title>Phonebook</Title>
       <ContactForm />
       <SubTitle>Contacts</SubTitle>
+
       {length > 0 ? (
         <Filter />
       ) : (
         <Message>Contact list is empty! Add your first contact.</Message>
       )}
-      {isLoading && !error && <p>In progress ...</p>}
+      {isLoading && !error && <Loader />}
       {length > 0 && <ContactList />}
     </Container>
   );
